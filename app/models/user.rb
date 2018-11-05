@@ -18,6 +18,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :watchlists
+
   validates :name, :email, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: { case_sensitive: false }
 end

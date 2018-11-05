@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_134615) do
+ActiveRecord::Schema.define(version: 2018_11_05_141005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,4 +25,20 @@ ActiveRecord::Schema.define(version: 2018_11_05_134615) do
     t.index ["email"], name: "index_users_on_email", unique: true, where: "(deleted_at IS NULL)"
   end
 
+  create_table "watchlists", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "url", null: false
+    t.string "selector", null: false
+    t.integer "wait_time_in_minutes", default: 60
+    t.datetime "expires_at"
+    t.bigint "user_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "user_id"], name: "index_watchlists_on_name_and_user_id", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["url", "user_id"], name: "index_watchlists_on_url_and_user_id", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["user_id"], name: "index_watchlists_on_user_id"
+  end
+
+  add_foreign_key "watchlists", "users"
 end
