@@ -3,6 +3,7 @@
 # Table name: watchlists
 #
 #  id                   :bigint(8)        not null, primary key
+#  active               :boolean          default(FALSE)
 #  deleted_at           :datetime
 #  expires_at           :datetime
 #  name                 :string           not null

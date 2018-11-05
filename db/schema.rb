@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_141005) do
+ActiveRecord::Schema.define(version: 2018_11_05_191129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_11_05_141005) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: false
     t.index ["name", "user_id"], name: "index_watchlists_on_name_and_user_id", unique: true, where: "(deleted_at IS NULL)"
     t.index ["url", "user_id"], name: "index_watchlists_on_url_and_user_id", unique: true, where: "(deleted_at IS NULL)"
     t.index ["user_id"], name: "index_watchlists_on_user_id"

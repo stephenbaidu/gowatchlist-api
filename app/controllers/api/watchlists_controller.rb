@@ -1,5 +1,5 @@
 class Api::WatchlistsController < Api::BaseController
-  before_action :set_watchlist, only: [:show, :update, :destroy]
+  before_action :set_watchlist, only: [:show, :update, :destroy, :activate, :deactivate]
 
   def index
     @watchlists = current_user.watchlists.reorder(id: :desc)
@@ -25,6 +25,18 @@ class Api::WatchlistsController < Api::BaseController
     @watchlist.destroy
 
     head :no_content
+  end
+
+  def activate
+    @watchlist.update(active: true)
+
+    head :ok
+  end
+
+  def deactivate
+    @watchlist.update(active: false)
+
+    head :ok
   end
 
   private

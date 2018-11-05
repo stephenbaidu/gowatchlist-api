@@ -3,6 +3,7 @@
 # Table name: watchlists
 #
 #  id                   :bigint(8)        not null, primary key
+#  active               :boolean          default(FALSE)
 #  deleted_at           :datetime
 #  expires_at           :datetime
 #  name                 :string           not null
@@ -27,6 +28,7 @@ FactoryBot.define do
     selector { "MyString" }
     wait_time_in_minutes { 120 }
     expires_at { nil }
+    active { true }
     association :user, factory: :user
   end
 end

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     delete 'signin', controller: :signin, action: :destroy
     get 'profile', controller: :profile, action: :show
 
-    resources :watchlists
+    resources :watchlists do
+      member do
+        post :activate
+        post :deactivate
+      end
+    end
   end
 end
