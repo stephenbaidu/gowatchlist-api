@@ -23,8 +23,11 @@
 
 class Watchlist < ApplicationRecord
   belongs_to :user
+  has_one    :visit_info, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :url, presence: true, uniqueness: { scope: :user_id }
   validates :selector, presence: true
+
+  after_create_commit :create_visit_info
 end
