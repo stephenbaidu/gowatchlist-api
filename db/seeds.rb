@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+return unless Rails.env.development?
+
+user = FactoryBot.create(
+  :user,
+  name: 'John Doe',
+  email: 'john.doe@example.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+FactoryBot.create_list(:watchlist, 20, user: user)
