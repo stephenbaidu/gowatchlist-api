@@ -29,5 +29,9 @@ class Watchlist < ApplicationRecord
   validates :url, presence: true, uniqueness: { scope: :user_id }
   validates :selector, presence: true
 
+  scope :ready_for_execution_with_wait_time, (lambda do |minutes|
+    where(active: true, wait_time_in_minutes: minutes).where('expires_at IS NULL OR expires_at > ?', Time.now)
+  end)
+
   after_create_commit :create_visit_info
 end
