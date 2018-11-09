@@ -1,16 +1,4 @@
-# every 30 minutes
-thirty_minutes_watchlist:
-  cron: "/30 * * * *"
-  class: "ThirtyMinutesWatchlistJob"
 # every 1 hour
-one_hour_watchlist:
-  cron: "* /1 * * *"
-  class: "OneHourWatchlistJob"
-# every 2 hours
-two_hour_watchlist:
-  cron: "* /2 * * *"
-  class: "TwoHourWatchlistJob"
-# every 6 hours
-six_hour_watchlist:
-  cron: "* /6 * * *"
-  class: "SixHourWatchlistJob"
+every_one_hour:
+  cron: "1 * * * *"
+  class: "WatchlistSchedulerJob"

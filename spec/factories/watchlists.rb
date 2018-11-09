@@ -2,17 +2,16 @@
 #
 # Table name: watchlists
 #
-#  id                   :bigint(8)        not null, primary key
-#  active               :boolean          default(FALSE)
-#  deleted_at           :datetime
-#  expires_at           :datetime
-#  name                 :string           not null
-#  selector             :string           not null
-#  url                  :string           not null
-#  wait_time_in_minutes :integer          default(60)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  user_id              :bigint(8)        not null
+#  id         :bigint(8)        not null, primary key
+#  active     :boolean          default(FALSE)
+#  deleted_at :datetime
+#  expires_at :datetime
+#  name       :string           not null
+#  selector   :string           not null
+#  url        :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint(8)        not null
 #
 # Indexes
 #
@@ -26,7 +25,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Watchlist #{n}" }
     sequence(:url) { |n| "url_#{n}@example.com" }
     selector { "MyString" }
-    wait_time_in_minutes { 120 }
     expires_at { nil }
     active { true }
     association :user, factory: :user

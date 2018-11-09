@@ -46,6 +46,6 @@ class Api::WatchlistsController < Api::BaseController
   end
 
   def watchlist_params
-    params.require(:watchlist).permit(:name, :url, :selector, :wait_time_in_minutes, :expires_at)
+    params.require(:watchlist).permit(:name, :url, :selector, :expires_at)
   end
 end

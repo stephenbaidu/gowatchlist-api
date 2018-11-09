@@ -23,7 +23,6 @@ describe 'GET /api/watchlists/:id' do
         name
         url
         selector
-        wait_time_in_minutes
         active
         expires_at
         created_at

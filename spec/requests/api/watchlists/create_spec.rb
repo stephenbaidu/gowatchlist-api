@@ -4,7 +4,7 @@ describe 'POST /api/watchlists' do
   let(:user) { create :user }
   let(:watchlist) { build :watchlist, user: user }
   let(:params) do
-    { watchlist: watchlist.slice(:name, :url, :selector, :wait_time_in_minutes) }
+    { watchlist: watchlist.slice(:name, :url, :selector) }
   end
   let(:headers) { authenticated_header(user) }
   let(:request) do
