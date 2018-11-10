@@ -1,4 +1,4 @@
-class WatchlistHandler < ServiceBase
+class WatchlistVisitor < ServiceBase
   def initialize(watchlist)
     @watchlist = watchlist
     @visit_info = watchlist.visit_info
@@ -8,7 +8,7 @@ class WatchlistHandler < ServiceBase
     return unless visit_info
     return unless content
 
-    visit_info.update_content(content)
+    visit_info.update_visit(content)
 
     if visit_info.new_content?
       WatchlistMailer.alert(watchlist).deliver_later

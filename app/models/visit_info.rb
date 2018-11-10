@@ -19,9 +19,18 @@
 class VisitInfo < ApplicationRecord
   belongs_to :watchlist
 
-  def update_content(content)
-    old_content = previous_content + current_content
-    update(previous_content: old_content, current_content: content)
+  def update_visit(new_content)
+    with_lock do
+      self.visits = visits + 1
+      self.previous_content = previous_content | current_content
+      self.current_content = new_content
+
+      if (current_content - previous_content).present?
+        self.alerts = alerts + 1
+      end
+
+      save
+    end
   end
 
   def new_content?

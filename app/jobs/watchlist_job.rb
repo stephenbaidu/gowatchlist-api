@@ -5,6 +5,6 @@ class WatchlistJob < ApplicationJob
     watchlist = Watchlist.find_by_id(id)
     return unless watchlist&.active?
 
-    WatchlistHandler.call(watchlist)
+    WatchlistVisitor.call(watchlist)
   end
 end
