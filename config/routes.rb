@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  namespace :api, defaults: { format: :json } do
+  namespace :v1, defaults: { format: :json } do
     match '*any' => 'application#options', :via => [:options]
     post 'refresh', controller: :refresh, action: :create
     post 'signin', controller: :signin, action: :create

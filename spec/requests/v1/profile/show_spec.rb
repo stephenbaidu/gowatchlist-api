@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'DELETE /api/signin' do
+describe 'GET /v1/profile' do
   let(:user) { create :user }
   let(:headers) { authenticated_header(user) }
   let(:request) do
-    delete '/api/signin', params: {}, headers: headers
+    get '/v1/profile', params: {}, headers: headers
   end
 
   it_behaves_like 'authenticated'
@@ -13,6 +13,7 @@ describe 'DELETE /api/signin' do
     before { request }
 
     it { expect(response).to have_http_status(:ok) }
-    it { expect(response.body).to be_empty }
+    it { expect(response.body).not_to be_empty }
+    it { expect(response_json.keys).to match_array(['id', 'name', 'email']) }
   end
 end

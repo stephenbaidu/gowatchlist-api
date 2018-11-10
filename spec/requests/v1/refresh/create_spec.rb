@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe 'POST /api/refresh' do
+describe 'POST /v1/refresh' do
   let(:user) { create :user }
   let(:access_cookie) { @tokens[:access] }
   let(:csrf_token) { @tokens[:csrf] }
   let(:headers) { { "#{JWTSessions.csrf_header}": csrf_token } }
   let(:request) do
-    post '/api/refresh', params: {}, headers: headers
+    post '/v1/refresh', params: {}, headers: headers
   end
 
   context 'success' do

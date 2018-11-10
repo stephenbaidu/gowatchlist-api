@@ -1,4 +1,4 @@
-class Api::SigninController < Api::BaseController
+class V1::SigninController < V1::BaseController
   skip_before_action :authorize_access_request!, only: [:create]
 
   def create

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'POST /api/signin' do
+describe 'POST /v1/signin' do
   let(:password) { 'password' }
   let(:user) { create :user, password: password }
   let(:params) { { signin: { email: user.email, password: password } } }
   let(:request) do
-    post '/api/signin', params: params, headers: {}
+    post '/v1/signin', params: params, headers: {}
   end
 
   context 'when credentials are valid' do

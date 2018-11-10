@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe 'GET /api/watchlists/:id' do
+describe 'GET /v1/watchlists/:id' do
   let!(:user) { create :user }
   let!(:watchlist) { create :watchlist, user: user }
   let(:id) { watchlist.id }
   let(:headers) { authenticated_header(user) }
   let(:request) do
-    get "/api/watchlists/#{id}", headers: headers
+    get "/v1/watchlists/#{id}", headers: headers
   end
 
   it_behaves_like 'authenticated'

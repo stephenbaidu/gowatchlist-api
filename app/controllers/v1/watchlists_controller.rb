@@ -1,4 +1,4 @@
-class Api::WatchlistsController < Api::BaseController
+class V1::WatchlistsController < V1::BaseController
   before_action :set_watchlist, only: [:show, :update, :destroy, :activate, :deactivate]
 
   def index

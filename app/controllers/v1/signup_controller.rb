@@ -1,4 +1,4 @@
-class Api::SignupController < Api::BaseController
+class V1::SignupController < V1::BaseController
   skip_before_action :authorize_access_request!
 
   def create

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'POST /api/watchlists' do
+describe 'POST /v1/watchlists' do
   let(:user) { create :user }
   let(:watchlist) { build :watchlist, user: user }
   let(:params) do
@@ -8,7 +8,7 @@ describe 'POST /api/watchlists' do
   end
   let(:headers) { authenticated_header(user) }
   let(:request) do
-    post '/api/watchlists', params: params, headers: headers
+    post '/v1/watchlists', params: params, headers: headers
   end
 
   it_behaves_like 'authenticated'

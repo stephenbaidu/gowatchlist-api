@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'POST /api/signup' do
+describe 'POST /v1/signup' do
   let(:params) do
     {
       signup: {
@@ -12,7 +12,7 @@ describe 'POST /api/signup' do
     }
   end
   let(:request) do
-    post '/api/signup', params: params, headers: {}
+    post '/v1/signup', params: params, headers: {}
   end
 
   context 'when params are valid' do

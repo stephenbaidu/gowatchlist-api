@@ -1,4 +1,4 @@
-class Api::BaseController < ApplicationController
+class V1::BaseController < ApplicationController
   include JWTSessions::RailsAuthorization
 
   rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized

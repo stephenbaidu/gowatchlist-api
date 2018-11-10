@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'PUT /api/watchlists/:id' do
+describe 'PUT /v1/watchlists/:id' do
   let!(:user) { create :user }
   let!(:watchlist) { create :watchlist, user: user }
   let(:id) { watchlist.id }
   let(:params) { {} }
   let(:headers) { authenticated_header(user) }
   let(:request) do
-    put "/api/watchlists/#{id}", params: params, headers: headers
+    put "/v1/watchlists/#{id}", params: params, headers: headers
   end
 
   it_behaves_like 'authenticated'

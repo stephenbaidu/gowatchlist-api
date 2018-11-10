@@ -1,4 +1,4 @@
-class Api::RefreshController < Api::BaseController
+class V1::RefreshController < V1::BaseController
   skip_before_action :authorize_access_request!
   before_action :authorize_refresh_by_access_request!
 
