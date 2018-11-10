@@ -1,0 +1,5 @@
+production:
+  host: https://www.gowatchlist.com
+
+development:
+  host: http://localhost:8080

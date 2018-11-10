@@ -11,7 +11,7 @@ class WatchlistHandler < ServiceBase
     visit_info.update_content(content)
 
     if visit_info.new_content?
-      # Send email
+      WatchlistMailer.alert(watchlist).deliver_later
     end
   end
 

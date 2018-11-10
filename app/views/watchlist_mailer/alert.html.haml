@@ -1,0 +1,11 @@
+%p
+  Hi #{@user.name},
+%p
+  Your watchlist "#{@watchlist.name}" has been updated
+%p
+  = link_to 'Visit your page', @watchlist.url
+
+%p
+  This email was sent by GoWatchlist (https://www.gowatchlist.com)
+  %br
+  If you don't want to receive this type of email in the future, please visit our site and delete your watchlists.

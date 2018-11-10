@@ -38,6 +38,10 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'redis-rails'
 
+gem 'mailgun_rails'
+gem 'haml-rails'
+gem 'draper'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -50,6 +54,7 @@ end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'annotate'
+  gem 'letter_opener'
 end
 
 
