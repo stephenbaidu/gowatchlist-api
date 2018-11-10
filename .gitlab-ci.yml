@@ -1,0 +1,40 @@
+image: "ruby:2.5.1"
+
+variables:
+  POSTGRES_DB: test_db
+  POSTGRES_USER: runner
+  POSTGRES_PASSWORD: ""
+  REDIS_URL: redis://redis:6379
+
+stages:
+  - build
+  - test
+  - release
+
+test:
+  stage: test
+  services:
+    - redis:latest
+    - postgres:latest
+  script:
+    - apt-get update -qq && apt-get install -y -qq postgresql postgresql-contrib libpq-dev cmake nodejs
+    - ruby -v
+    - which ruby
+    - gem install bundler --no-ri --no-rdoc
+    - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+    - cp config/database.yml.gitlab config/database.yml
+    - RAILS_ENV=test bundle exec rake db:create db:schema:load
+    - RAILS_ENV=test bundle exec rspec
+
+production:
+  stage: release
+  script:
+    - echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+    - wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+    - apt-get update
+    - apt-get install -y heroku-toolbelt
+    - gem install dpl
+    - dpl --provider=heroku --app=gowatchlist-api --api-key=$HEROKU_API_KEY
+    - heroku run rake db:migrate --exit-code --app gowatchlist-api
+  only:
+    - master
