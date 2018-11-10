@@ -25,6 +25,8 @@ describe 'GET /v1/watchlists/:id' do
         selector
         active
         expires_at
+        visits
+        alerts
         created_at
         updated_at
       )
