@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  require 'sidekiq/web'
-  require 'sidekiq/cron/web'
-  mount Sidekiq::Web => '/sidekiq'
 
   constraints subdomain: 'admin' do
+    require 'sidekiq/web'
+    require 'sidekiq/cron/web'
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      AdminAuth.call(username, password)
+    end
+    mount Sidekiq::Web => '/sidekiq'
+
     mount RailsAdmin::Engine => '/', as: 'rails_admin'
   end
 
