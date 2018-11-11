@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  constraints subdomain: 'admin' do
+    mount RailsAdmin::Engine => '/', as: 'rails_admin'
+  end
+
   namespace :v1, defaults: { format: :json } do
     match '*any' => 'application#options', :via => [:options]
     post 'refresh', controller: :refresh, action: :create

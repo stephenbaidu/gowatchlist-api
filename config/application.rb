@@ -34,5 +34,10 @@ module GowatchlistApi
 
     # Active job backend
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Session::CookieStore, { key: '_gowatchlist_api_session' }
   end
 end
