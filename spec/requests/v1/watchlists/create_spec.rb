@@ -1,14 +1,27 @@
 require 'rails_helper'
 
 describe 'POST /v1/watchlists' do
-  let(:user) { create :user }
-  let(:watchlist) { build :watchlist, user: user }
+  let!(:user) { create :user }
+  let!(:watchlist) { build :watchlist, user: user }
+  let(:url) { watchlist.url }
+  let(:item_url) { '/an-item' }
   let(:params) do
-    { watchlist: watchlist.slice(:name, :url, :selector) }
+    {
+      watchlist: {
+        name: watchlist.name,
+        url:  url,
+        item_url: item_url
+      }
+    }
   end
   let(:headers) { authenticated_header(user) }
   let(:request) do
     post '/v1/watchlists', params: params, headers: headers
+  end
+
+  before do
+    allow(CssSelectorFromUrls).to receive(:call).with(url, item_url).and_return('some selector')
+    # allow(BuildWatchlist).to receive(:call).with(user, params).and_return(watchlist)
   end
 
   it_behaves_like 'authenticated'

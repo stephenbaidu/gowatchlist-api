@@ -9,9 +9,10 @@ class SelectorFormatter < ServiceBase
     arr = selector.split('>')
     @value =
       arr.map(&:strip)
+      .reject { |e| e.include?('#') }
       .map { |e| e[0..3] == 'div.' ? e[3..-1] : e }
-      .map { |e| e.include?(':nth-child') ? e.split(':nth-child').first : e }
-      .join(' ')
+      .map { |e| e.include?(':') ? e.split(':').first : e }
+      .join(' > ')
 
     value
   end

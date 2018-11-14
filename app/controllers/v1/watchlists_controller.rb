@@ -9,14 +9,18 @@ class V1::WatchlistsController < V1::BaseController
   end
 
   def create
-    @watchlist = current_user.watchlists.new(watchlist_params)
+    @watchlist = BuildWatchlist.call(current_user, create_watchlist_params)
     @watchlist.save!
 
     render :show, status: :created
+  rescue BuildWatchlist::InvalidUrlError
+    render json: { errors: { base: ['Url is not valid'] } }, status: :unprocessable_entity
+  rescue BuildWatchlist::ItemNotFoundError
+    render json: { errors: { base: ['Item was not found on the page'] } }, status: :unprocessable_entity
   end
 
   def update
-    @watchlist.update!(watchlist_params)
+    @watchlist.update!(update_watchlist_params)
 
     render :show, status: :ok
   end
@@ -45,7 +49,11 @@ class V1::WatchlistsController < V1::BaseController
     @watchlist = current_user.watchlists.find(params[:id])
   end
 
-  def watchlist_params
-    params.require(:watchlist).permit(:name, :url, :selector, :expires_at)
+  def create_watchlist_params
+    params.require(:watchlist).permit(:name, :url, :item_url)
+  end
+
+  def update_watchlist_params
+    params.require(:watchlist).permit(:name)
   end
 end

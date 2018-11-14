@@ -23,7 +23,7 @@
 FactoryBot.define do
   factory :watchlist do
     sequence(:name) { |n| "Watchlist #{n}" }
-    sequence(:url) { |n| "url_#{n}@example.com" }
+    sequence(:url) { |n| "https://url_#{n}@example.com" }
     selector { "MyString" }
     expires_at { nil }
     active { true }
