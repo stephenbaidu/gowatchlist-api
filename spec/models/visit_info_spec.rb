@@ -19,5 +19,30 @@
 require 'rails_helper'
 
 RSpec.describe VisitInfo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { is_expected.to belong_to(:watchlist) }
+  end
+
+  describe '#new_content?' do
+    let(:visit_info) { build :visit_info, previous_content: previous_content, current_content: current_content }
+    subject { visit_info.new_content? }
+
+    context 'when current_content has a new element' do
+      let(:previous_content) { ['a', 'b', 'c'] }
+      let(:current_content) { ['a', 'd'] }
+
+      it 'returns true' do
+        expect(subject).to eq(true)
+      end
+    end
+
+    context 'when current_content does not have a new element' do
+      let(:previous_content) { ['a', 'b', 'c'] }
+      let(:current_content) { ['c', 'a'] }
+
+      it 'returns false' do
+        expect(subject).to eq(false)
+      end
+    end
+  end
 end
