@@ -11,19 +11,17 @@ class BuildWatchlist < ServiceBase
     raise InvalidUrlError unless site_url =~ URI::regexp
     raise ItemNotFoundError unless css_selector.present?
 
-    user.watchlists.new(watchlist_params)
+    @user.watchlists.new(watchlist_params)
   end
 
   private
 
-  attr_reader :user, :params
-
   def site_url
-    params[:url]
+    @params[:url]
   end
 
   def item_url
-    params[:item_url]
+    @params[:item_url]
   end
 
   def css_selector
@@ -32,7 +30,7 @@ class BuildWatchlist < ServiceBase
 
   def watchlist_params
     {
-      name: params[:name],
+      name: @params[:name],
       url: site_url,
       selector: SelectorFormatter.call(css_selector)
     }
