@@ -1,4 +1,4 @@
-# every 1 hour
-every_one_hour:
-  cron: "1 * * * *"
+every_15_minutes:
+  queue: "watch_schedulers"
+  cron: "*/15 * * * *"
   class: "WatchlistSchedulerJob"
