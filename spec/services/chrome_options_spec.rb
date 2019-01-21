@@ -1,10 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe SeleniumWebDriverChromeOptions do
-  let!(:options) { SeleniumWebDriverChromeOptions.call }
+RSpec.describe ChromeOptions do
+  let!(:dir) { File.join(Dir.pwd, %w(tmp chrome)) }
+  let!(:options) { ChromeOptions.new(dir, nil) }
+
+  before do
+    allow_any_instance_of(CreateChromeUserDataDir).to receive(:call).and_return(dir)
+  end
 
   it 'returns a Selenium::WebDriver::Chrome::Options' do
-    expect(options.class).to eq(Selenium::WebDriver::Chrome::Options)
+    expect(options).to be_a_kind_of(Selenium::WebDriver::Chrome::Options)
   end
 
   context 'args' do

@@ -1,19 +1,25 @@
 class SelectorFormatter < ServiceBase
-  attr_reader :selector, :value
-
   def initialize(selector)
     @selector = selector
   end
 
   def call
-    arr = selector.split('>')
-    @value =
-      arr.map(&:strip)
-      .reject { |e| e.include?('#') }
-      .map { |e| e[0..3] == 'div.' ? e[3..-1] : e }
-      .map { |e| e.include?(':') ? e.split(':').first : e }
+    @selector
+      .split('>')
+      .map(&:strip)
+      .reject { |element| element.include?('#') }
+      .map { |element| remove_div_tag(element) }
+      .map { |element| extract_css(element) }
       .join(' > ')
+  end
 
-    value
+  private
+
+  def remove_div_tag(str)
+    str[0..3] == 'div.' ? str[3..-1] : str
+  end
+
+  def extract_css(str)
+    str.include?(':') ? str.split(':').first : str
   end
 end
