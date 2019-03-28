@@ -1,11 +1,5 @@
 require 'rails_helper'
 
-# Redefine PageBrowser class so as not to trigger chrome requirement
-class PageBrowser
-  def initialize
-  end
-end
-
 RSpec.describe ContentFetcher do
   let(:url) { 'https://www.example.com' }
   let(:css_selector) { '.link' }
@@ -13,7 +7,7 @@ RSpec.describe ContentFetcher do
   let!(:service) { ContentFetcher.new(url, css_selector) }
 
   before do
-    allow_any_instance_of(PageHtml).to receive(:call).and_return(html)
+    allow(PageHtml).to receive(:call).and_return(html)
   end
 
   context 'when html is empty' do
