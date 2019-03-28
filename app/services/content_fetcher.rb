@@ -5,7 +5,7 @@ class ContentFetcher < ServiceBase
   end
 
   def call
-    elements.map { |element| element.attr('href') || element.content }
+    elements.map { |element| ElementValue.call(element) }
   end
 
   private
