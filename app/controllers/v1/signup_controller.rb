@@ -2,12 +2,9 @@ class V1::SignupController < V1::BaseController
   skip_before_action :authorize_access_request!
 
   def create
-    user = User.new(signup_params)
-    if user.save
-      payload  = { user_id: user.id }
-      session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
-      tokens = session.login
+    @user = User.new(signup_params)
 
+    if @user.save
       response.set_cookie(
         JWTSessions.access_cookie,
         value: tokens[:access],
@@ -17,7 +14,7 @@ class V1::SignupController < V1::BaseController
 
       render json: { csrf: tokens[:csrf] }
     else
-      render json: { error: user.errors.full_messages.join(' ') }, status: :unprocessable_entity
+      render json: { error: @user.errors.full_messages.join(' ') }, status: :unprocessable_entity
     end
   end
 
@@ -25,5 +22,13 @@ class V1::SignupController < V1::BaseController
 
   def signup_params
     params.require(:signup).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def tokens
+    @tokens ||= begin
+      payload = { user_id: @user.id }
+      session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
+      session.login
+    end
   end
 end
