@@ -18,7 +18,7 @@ describe 'GET /v1/watchlists/:id' do
     it { expect(response.body).not_to be_empty }
     it { expect(response_json['id']).to eq(watchlist.id) }
     it 'has all the fields' do
-      keys = %w(
+      keys = %w[
         id
         name
         url
@@ -29,7 +29,7 @@ describe 'GET /v1/watchlists/:id' do
         alerts
         created_at
         updated_at
-      )
+      ]
       expect(response_json.keys).to match_array(keys)
     end
   end

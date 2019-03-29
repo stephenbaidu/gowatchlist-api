@@ -1,15 +1,15 @@
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'action_cable/engine'
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -38,6 +38,6 @@ module GowatchlistApi
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Session::CookieStore, { key: '_gowatchlist_api_session' }
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_gowatchlist_api_session'
   end
 end

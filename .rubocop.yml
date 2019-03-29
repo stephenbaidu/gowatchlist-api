@@ -1,0 +1,124 @@
+AllCops:
+  Include:
+    - 'Gemfile'
+    - 'app/**/*.rb'
+    - 'bin/**/*'
+    - 'config/**/*.rb'
+    - 'lib/**/*.rb'
+    - 'lib/**/*.rake'
+    - 'spec/**/*.rb'
+  Exclude:
+    - 'db/**/*.rb'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.5
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/Proc:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+  IgnoredPatterns: ['(\A|\s)#']
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Enabled: false
+
+Naming/PredicateName:
+  NamePrefixBlacklist:
+    - is_
+    - have_
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false

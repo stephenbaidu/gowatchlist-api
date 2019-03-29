@@ -22,6 +22,7 @@ test:
     - which ruby
     - gem install bundler --no-ri --no-rdoc
     - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}"
+    - RAILS_ENV=test bundle exec rubocop
     - cp config/database.yml.gitlab config/database.yml
     - RAILS_ENV=test bundle exec rake db:create db:schema:load
     - RAILS_ENV=test bundle exec rspec

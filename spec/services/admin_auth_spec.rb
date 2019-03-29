@@ -10,7 +10,7 @@ RSpec.describe AdminAuth do
       allow(Rails.application.credentials).to receive(:admin_email).and_return(email)
       allow(Rails.application.credentials).to receive(:admin_password).and_return(password)
     end
-    
+
     it 'returns true' do
       expect(service.call).to eq(true)
     end
@@ -21,7 +21,7 @@ RSpec.describe AdminAuth do
       allow(Rails.application.credentials).to receive(:admin_email).and_return('notme@example.com')
       allow(Rails.application.credentials).to receive(:admin_password).and_return(password)
     end
-    
+
     it 'returns false' do
       expect(service.call).to eq(false)
     end
@@ -32,7 +32,7 @@ RSpec.describe AdminAuth do
       allow(Rails.application.credentials).to receive(:admin_email).and_return(email)
       allow(Rails.application.credentials).to receive(:admin_password).and_return('InvalidPassword')
     end
-    
+
     it 'returns false' do
       expect(service.call).to eq(false)
     end

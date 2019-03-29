@@ -6,7 +6,7 @@ RSpec.describe PageHtml do
   describe '#call' do
     it 'calls goto, html and close on browser' do
       browser = instance_double('Watir::Browser', goto: nil, html: nil, close: nil)
-      user_data_dir_service = class_double(CreateBrowser, call: browser).as_stubbed_const
+      class_double(CreateBrowser, call: browser).as_stubbed_const
       expect(browser).to receive(:goto)
       expect(browser).to receive(:html)
       expect(browser).to receive(:close)

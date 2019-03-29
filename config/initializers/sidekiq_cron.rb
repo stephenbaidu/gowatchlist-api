@@ -1,4 +1,4 @@
-Sidekiq.configure_server do ||
+Sidekiq.configure_server do
   schedule_file = 'config/job_schedule.yml'
 
   if Sidekiq.server?

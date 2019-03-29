@@ -1,5 +1,4 @@
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   ## == Devise ==
@@ -27,8 +26,6 @@ RailsAdmin.config do |config|
     authenticate_or_request_with_http_basic('Login required') do |username, password|
       if AdminAuth.call(username, password)
         User.find_by_email(username)
-      else
-        nil
       end
     end
   end

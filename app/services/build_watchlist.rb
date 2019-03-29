@@ -8,7 +8,7 @@ class BuildWatchlist < ServiceBase
   end
 
   def call
-    raise InvalidUrlError unless site_url =~ URI::regexp
+    raise InvalidUrlError unless site_url =~ URI::DEFAULT_PARSER.make_regexp
     raise ItemNotFoundError unless css_selector.present?
 
     @user.watchlists.new(watchlist_params)

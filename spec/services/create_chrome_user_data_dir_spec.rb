@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CreateChromeUserDataDir do
-  let(:dir) { File.join(Dir.pwd, %w(tmp chrome)) }
+  let(:dir) { File.join(Dir.pwd, %w[tmp chrome]) }
   let(:service) { CreateChromeUserDataDir.new }
 
   before do

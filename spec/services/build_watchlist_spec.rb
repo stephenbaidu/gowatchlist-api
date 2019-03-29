@@ -22,7 +22,7 @@ RSpec.describe BuildWatchlist do
     let(:params) do
       super().tap { |param| param[:url] = '//invalid-url' }
     end
-    
+
     it 'raises BuildWatchlist::InvalidUrlError' do
       expect { service.call }.to raise_error(BuildWatchlist::InvalidUrlError)
     end
@@ -32,7 +32,7 @@ RSpec.describe BuildWatchlist do
     before do
       allow(CssSelectorFromUrls).to receive(:call).with(url, item_url).and_return(nil)
     end
-    
+
     it 'raises BuildWatchlist::ItemNotFoundError' do
       expect { service.call }.to raise_error(BuildWatchlist::ItemNotFoundError)
     end
@@ -42,7 +42,7 @@ RSpec.describe BuildWatchlist do
     before do
       allow(CssSelectorFromUrls).to receive(:call).with(url, item_url).and_return(css_selector)
     end
-    
+
     it 'builds a Watchlist object' do
       object = service.call
       expect(object.name).to eq('Unique name')

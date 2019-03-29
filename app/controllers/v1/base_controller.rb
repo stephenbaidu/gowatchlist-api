@@ -7,13 +7,13 @@ class V1::BaseController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :unprocessable_entity
 
   before_action :authorize_access_request!
-  
+
   private
 
   def current_user
     @current_user ||= User.find(payload['user_id'])
   end
-  
+
   def not_authorized
     render json: { error: 'Not authorized' }, status: :unauthorized
   end

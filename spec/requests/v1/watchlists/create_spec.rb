@@ -9,7 +9,7 @@ describe 'POST /v1/watchlists' do
     {
       watchlist: {
         name: watchlist.name,
-        url:  url,
+        url: url,
         item_url: item_url
       }
     }

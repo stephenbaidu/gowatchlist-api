@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ChromeOptions do
-  let!(:dir) { File.join(Dir.pwd, %w(tmp chrome)) }
+  let!(:dir) { File.join(Dir.pwd, %w[tmp chrome]) }
   let!(:options) { ChromeOptions.new(dir, nil) }
 
   before do

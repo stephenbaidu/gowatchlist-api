@@ -4,10 +4,10 @@ RSpec.describe CssSelectorFromUrls do
   let(:site_url) { 'https://www.example.com' }
   let(:item_url) { 'https://www.example.com/item-1' }
   let(:raw_html) do
-    %{
+    %(
       <a href="https://www.example.com/item-1"></a>
       <a href="https://www.example.com/item-2"></a>
-    }
+    )
   end
   let(:html) { Nokogiri::HTML(raw_html) }
   let!(:service) { CssSelectorFromUrls.new(site_url, item_url) }
