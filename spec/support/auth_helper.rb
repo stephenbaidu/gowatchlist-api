@@ -3,11 +3,11 @@ module GowatchlistApi
     def authenticated_header(user)
       payload = { user_id: user.id }
       session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
-      tokens = session.login
-      cookies[JWTSessions.access_cookie] = tokens[:access]
+      access_token, csrf_token = session.login.values_at(:access, :csrf)
+      cookies[JWTSessions.access_cookie] = access_token
 
       {
-        "#{JWTSessions.csrf_header}": tokens[:csrf],
+        "#{JWTSessions.csrf_header}": csrf_token,
         'Accept' => 'application/json'
       }
     end
