@@ -21,7 +21,6 @@ describe 'POST /v1/watchlists' do
 
   before do
     allow(CssSelectorFromUrls).to receive(:call).with(url, item_url).and_return('some selector')
-    # allow(BuildWatchlist).to receive(:call).with(user, params).and_return(watchlist)
   end
 
   it_behaves_like 'authenticated'
@@ -30,6 +29,26 @@ describe 'POST /v1/watchlists' do
     before { request }
 
     it { expect(response).to have_http_status(:created) }
+    it { expect(response.body).not_to be_empty }
+  end
+
+  context 'when url is not valid' do
+    before do
+      allow_any_instance_of(BuildWatchlist).to receive(:call).and_raise(BuildWatchlist::InvalidUrlError)
+      request
+    end
+
+    it { expect(response).to have_http_status(:unprocessable_entity) }
+    it { expect(response.body).not_to be_empty }
+  end
+
+  context 'when item is not on page' do
+    before do
+      allow_any_instance_of(BuildWatchlist).to receive(:call).and_raise(BuildWatchlist::ItemNotFoundError)
+      request
+    end
+
+    it { expect(response).to have_http_status(:unprocessable_entity) }
     it { expect(response.body).not_to be_empty }
   end
 
