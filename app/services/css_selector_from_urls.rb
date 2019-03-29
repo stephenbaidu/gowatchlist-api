@@ -5,7 +5,8 @@ class CssSelectorFromUrls < ServiceBase
   end
 
   def call
-    first_matching_element&.css_path
+    first_element = first_matching_element || NullObject.instance
+    first_element.css_path
   end
 
   private
@@ -18,8 +19,8 @@ class CssSelectorFromUrls < ServiceBase
   def first_matching_element
     valid_anchor_elements.find do |element|
       href = element.attr('href')
-      uri = URI.parse(href) rescue nil
-      uri&.path == item_url_path
+      uri = URI.parse(href) rescue NullObject.instance
+      uri.path == item_url_path
     end
   end
 
