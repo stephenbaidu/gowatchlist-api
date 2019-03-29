@@ -18,11 +18,7 @@ class WatchlistVisitor < ServiceBase
   private
 
   def content
-    @content ||= fetcher.call
-  end
-
-  def fetcher
-    @fetcher ||= ContentFetcher.new(@watchlist.url, css_selector)
+    @content ||= ContentFetcher.call(@watchlist.url, css_selector)
   end
 
   def css_selector
