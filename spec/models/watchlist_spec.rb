@@ -37,4 +37,11 @@ RSpec.describe Watchlist, type: :model do
     it { should validate_uniqueness_of(:name).scoped_to(:user_id).case_insensitive }
     it { should validate_uniqueness_of(:url).scoped_to(:user_id).case_insensitive }
   end
+
+  describe '#ready_for_execution' do
+    it 'includes scope conditions' do
+      partial_sql = '"watchlists"."active" = TRUE AND (expires_at IS NULL OR expires_at >'
+      expect(subject.class.ready_for_execution.to_sql).to include(partial_sql)
+    end
+  end
 end
