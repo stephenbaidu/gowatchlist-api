@@ -45,4 +45,48 @@ RSpec.describe VisitInfo, type: :model do
       end
     end
   end
+
+  describe '#update_visit' do
+    let(:subject) { build :visit_info, previous_content: ['a'], current_content: ['b'] }
+
+    context 'when new_content has a new element' do
+      let(:new_content) { ['c'] }
+
+      it 'it increases visits count' do
+        expect { subject.update_visit(new_content) }.to change(subject, :visits).by(1)
+      end
+
+      it 'it increases alerts count' do
+        expect { subject.update_visit(new_content) }.to change(subject, :alerts).by(1)
+      end
+
+      it 'it updates previous_content' do
+        expect { subject.update_visit(new_content) }.to change(subject, :previous_content).from(['a']).to(['a', 'b'])
+      end
+
+      it 'it sets current_content to new_content' do
+        expect { subject.update_visit(new_content) }.to change(subject, :current_content).to(new_content)
+      end
+    end
+
+    context 'when new_content does not have a new element' do
+      let(:new_content) { [] }
+
+      it 'it increases visits count' do
+        expect { subject.update_visit(new_content) }.to change(subject, :visits).by(1)
+      end
+
+      it 'it does not increase alerts count' do
+        expect { subject.update_visit(new_content) }.to change(subject, :alerts).by(0)
+      end
+
+      it 'it updates previous_content' do
+        expect { subject.update_visit(new_content) }.to change(subject, :previous_content).from(['a']).to(['a', 'b'])
+      end
+
+      it 'it sets current_content to new_content' do
+        expect { subject.update_visit(new_content) }.to change(subject, :current_content).to(new_content)
+      end
+    end
+  end
 end

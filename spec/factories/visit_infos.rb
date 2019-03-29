@@ -18,7 +18,7 @@
 
 FactoryBot.define do
   factory :visit_info do
-    watchlist { nil }
+    association :watchlist, factory: :watchlist
     previous_content { "MyText" }
     current_content { "MyText" }
     visits { 1 }

@@ -8,7 +8,7 @@ class WatchlistVisitor < ServiceBase
     return unless @visit_info
     return unless content
 
-    @visit_info.update_visit(content)
+    UpdateVisit.call(@visit_info, content)
 
     if @visit_info.new_content?
       WatchlistMailer.alert(@watchlist).deliver_later
