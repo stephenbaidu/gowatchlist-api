@@ -58,6 +58,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'annotate'
   gem 'letter_opener'
+  gem 'brakeman'
 end
 
 group :test do
