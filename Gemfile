@@ -31,7 +31,7 @@ gem 'rack-cors'
 gem 'jwt_sessions', '~> 2'
 
 gem 'watir'
-gem 'chromedriver-helper'
+gem 'webdrivers', '~> 4.0'
 gem 'nokogiri'
 
 gem 'sidekiq'
